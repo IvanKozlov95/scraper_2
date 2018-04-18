@@ -99,4 +99,4 @@ if not os.path.exists(os.getcwd() + '/part2'):
 for el1 in term1:
 	for el2 in term2:
 		query = '{} {}'.format(el1, el2)
-		os.system(command.format(query, 100, 'part2/' + query.replace(' ', '_')))
+		os.system(command.format(query, 30, 'part2/' + query.replace(' ', '_')))
