@@ -40,6 +40,9 @@ DOWNLOADER_MIDDLEWARES = {
     'scrapy.downloadermiddlewares.httpproxy.HttpProxyMiddleware': None,
 }
 
+# logging
+LOG_STDOUT = True
+LOG_FILE = '/Users/ivankozlov/42/projects/scraper_2/scrapy_output.txt'
 
 # Configure maximum concurrent requests performed by Scrapy (default: 16)
 #CONCURRENT_REQUESTS = 32
