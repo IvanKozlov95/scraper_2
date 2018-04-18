@@ -6,14 +6,14 @@
         "port": 3128,
         "scaling": {
             "min": 1,
-            "max": 10
+            "max": 20
         }
     },
     "providers": [
         {
             "type": "awsec2",
-            "accessKeyId": "AKIAJUBEPXWBWIFM5TDQ",
-            "secretAccessKey": "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",
+            "accessKeyId": "AKIAICTOERQFGBQDJ47A",
+            "secretAccessKey": "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",
             "region": "eu-west-1",
             "instance": {
                 "InstanceType": "t1.micro",
