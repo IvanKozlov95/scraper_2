@@ -16,9 +16,9 @@ class GoogleSearchSpider(scrapy.Spider):
 		'https://www.google.com/search?q={}&num={}&hl={}',
 	]
 
-	def __init__(self, query, *args, **kwargs):
+	def __init__(self, query, depth=10, lang='en', *args, **kwargs):
 		self.query = query.replace(' ', '+')
-		GoogleSearchSpider.start_urls[0] = GoogleSearchSpider.start_urls[0].format(query, 3, 'en')
+		GoogleSearchSpider.start_urls[0] = GoogleSearchSpider.start_urls[0].format(query, depth, lang)
 		super(GoogleSearchSpider, self).__init__(*args, **kwargs)
 
 	def parse(self, response):
@@ -66,7 +66,7 @@ class GoogleSearchSpider(scrapy.Spider):
 			yield {}
 		contact_rule = "//a[text()[contains(.,'Contact')]]/@href"
 		company = response.meta['company']
-		links = response.xpath(contact_rule).extract():
+		links = response.xpath(contact_rule).extract()
 		for link in links:
 			print('link: ', link)
 			yield scrapy.Request(response.urljoin(link), callback=self.contact_page_parse, meta={ 'company': company }) 
