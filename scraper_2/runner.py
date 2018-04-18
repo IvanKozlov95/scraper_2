@@ -7,8 +7,23 @@ from scrapy.utils.project import get_project_settings
 # process = CrawlerProcess(get_project_settings())
 # process.crawl(GoogleSearchSpider, depth=2, query='asd')
 # process.start() 
-command = "scrapy crawl googlesearch -a query={} -a depth={} -o {}.json --nolog"
-items = [
+command = "scrapy crawl googlesearch -a query='{}' -a depth={} -o {}.json --nolog"
+term1 = [
+	"Manufacturer",
+	"Header",
+	"Forger",
+	"Cold header",
+	"Hot header",
+	"Machining",
+	"Hot Forger",
+	"Cold Forger",
+	"Forge",
+	"Forging",
+	"Heading",
+	"CNC",
+	"Machine Shop",
+]
+term2 = [
 	"anchor bolt",
 	"batten",
 	"bolt",
@@ -79,11 +94,9 @@ items = [
 	"zipper"
 ]
 
-test = [
-	'asd', 'aaa'
-]
-
 if not os.path.exists(os.getcwd() + '/part2'):
 	os.mkdir('part2')
-for item in test:
-	os.system(command.format(item, 2, 'part2/' + item))
+for el1 in term1:
+	for el2 in term2:
+		query = '{} {}'.format(el1, el2)
+		os.system(command.format(query, 100, 'part2/' + query.replace(' ', '_')))
