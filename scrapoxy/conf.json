@@ -1,12 +1,12 @@
 {
     "commander": {
-        "password": "CHANGE_THIS_PASSWORD"
+        "password": "asdasd"
     },
     "instance": {
         "port": 3128,
         "scaling": {
             "min": 1,
-            "max": 2
+            "max": 10
         }
     },
     "providers": [
