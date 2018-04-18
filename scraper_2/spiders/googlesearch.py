@@ -28,7 +28,6 @@ class GoogleSearchSpider(scrapy.Spider):
 		for idx, link in enumerate(links):
 			if link is not '':
 				url = link
-				print('link i am going to go: ', url)
 				yield scrapy.Request(url,
 					callback=self.company_page_parse, meta={ 'company': names[idx] },
 					headers={'X-Requested-With': 'XMLHttpRequest','Content-Type':'application/json'})
@@ -61,14 +60,12 @@ class GoogleSearchSpider(scrapy.Spider):
 		return contents
 
 	def company_page_parse(self, response):
-		if response.status == 400:
-			print("ERROR\n")
-			yield {}
-		contact_rule = "//a[text()[contains(.,'Contact')]]/@href"
 		company = response.meta['company']
+		if response.status == 400:
+			yield {'company': company, 'error': 'bad request error'}
+		contact_rule = "//a[text()[contains(.,'Contact')]]/@href"
 		links = response.xpath(contact_rule).extract()
 		for link in links:
-			print('link: ', link)
 			yield scrapy.Request(response.urljoin(link), callback=self.contact_page_parse, meta={ 'company': company }) 
 
 	def contact_page_parse(self, response):
