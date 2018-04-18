@@ -96,7 +96,15 @@ term2 = [
 
 if not os.path.exists(os.getcwd() + '/part2'):
 	os.mkdir('part2')
+skip1 = 0
+skip2 = 8
 for el1 in term1:
+	if (term1.index(el1) < skip1):
+		print('Skipped term: ', term1)
+		continue
 	for el2 in term2:
-		query = '{} {}'.format(el1, el2)
-		os.system(command.format(query, 30, 'part2/' + query.replace(' ', '_')))
+		query = '{} {}'.format(el2, el1)
+		if (term2.index(el2) < skip2):
+			print('Skipped query: ', query)
+			continue
+		os.system(command.format(query, 15, 'part2/' + query.replace(' ', '_')))
